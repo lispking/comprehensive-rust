@@ -52,22 +52,22 @@ const PL031_IRQ: IntId = IntId::spi(2);
 // ANCHOR: main
 #[no_mangle]
 extern "C" fn main(x0: u64, x1: u64, x2: u64, x3: u64) {
-    // Safe because `PL011_BASE_ADDRESS` is the base address of a PL011 device,
-    // and nothing else accesses that address range.
+    // SAFETY: `PL011_BASE_ADDRESS` is the base address of a PL011 device, and
+    // nothing else accesses that address range.
     let uart = unsafe { Uart::new(PL011_BASE_ADDRESS) };
     logger::init(uart, LevelFilter::Trace).unwrap();
 
     info!("main({:#x}, {:#x}, {:#x}, {:#x})", x0, x1, x2, x3);
 
-    // Safe because `GICD_BASE_ADDRESS` and `GICR_BASE_ADDRESS` are the base
+    // SAFETY: `GICD_BASE_ADDRESS` and `GICR_BASE_ADDRESS` are the base
     // addresses of a GICv3 distributor and redistributor respectively, and
     // nothing else accesses those address ranges.
     let mut gic = unsafe { GicV3::new(GICD_BASE_ADDRESS, GICR_BASE_ADDRESS) };
     gic.setup();
     // ANCHOR_END: main
 
-    // Safe because `PL031_BASE_ADDRESS` is the base address of a PL031 device,
-    // and nothing else accesses that address range.
+    // SAFETY: `PL031_BASE_ADDRESS` is the base address of a PL031 device, and
+    // nothing else accesses that address range.
     let mut rtc = unsafe { Rtc::new(PL031_BASE_ADDRESS) };
     let timestamp = rtc.read();
     let time = Utc.timestamp_opt(timestamp.into(), 0).unwrap();
@@ -82,10 +82,7 @@ extern "C" fn main(x0: u64, x1: u64, x2: u64, x3: u64) {
     // Wait for 3 seconds, without interrupts.
     let target = timestamp + 3;
     rtc.set_match(target);
-    info!(
-        "Waiting for {}",
-        Utc.timestamp_opt(target.into(), 0).unwrap()
-    );
+    info!("Waiting for {}", Utc.timestamp_opt(target.into(), 0).unwrap());
     trace!(
         "matched={}, interrupt_pending={}",
         rtc.matched(),
@@ -103,10 +100,7 @@ extern "C" fn main(x0: u64, x1: u64, x2: u64, x3: u64) {
 
     // Wait another 3 seconds for an interrupt.
     let target = timestamp + 6;
-    info!(
-        "Waiting for {}",
-        Utc.timestamp_opt(target.into(), 0).unwrap()
-    );
+    info!("Waiting for {}", Utc.timestamp_opt(target.into(), 0).unwrap());
     rtc.set_match(target);
     rtc.clear_interrupt();
     rtc.enable_interrupt(true);

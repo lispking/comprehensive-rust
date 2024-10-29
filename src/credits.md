@@ -11,15 +11,15 @@ details.
 
 ## Rust by Example
 
-Some examples and exercises have been copied and adapted from [Rust by
-Example](https://doc.rust-lang.org/rust-by-example/). Please see the
+Some examples and exercises have been copied and adapted from
+[Rust by Example](https://doc.rust-lang.org/rust-by-example/). Please see the
 `third_party/rust-by-example/` directory for details, including the license
 terms.
 
 ## Rust on Exercism
 
-Some exercises have been copied and adapted from [Rust on
-Exercism](https://exercism.org/tracks/rust). Please see the
+Some exercises have been copied and adapted from
+[Rust on Exercism](https://exercism.org/tracks/rust). Please see the
 `third_party/rust-on-exercism/` directory for details, including the license
 terms.
 
@@ -28,11 +28,3 @@ terms.
 The [Interoperability with C++](android/interoperability/cpp.md) section uses an
 image from [CXX](https://cxx.rs/). Please see the `third_party/cxx/` directory
 for details, including the license terms.
-
-## An Example in C
-
-The [Why Rust? - An Example in C](why-rust/an-example-in-c.md) section has been
-taken from the presentation slides of [Colin Finck's Master
-Thesis](https://colinfinck.de/Master_Thesis_Colin_Finck.pdf). It has been
-relicensed under the terms of the Apache 2.0 license for this course by the
-author.

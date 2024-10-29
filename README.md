@@ -7,9 +7,10 @@
 This repository has the source code for Comprehensive Rust 🦀, a multi-day Rust
 course developed by the Android team. The course covers all aspects of Rust,
 from basic syntax to generics and error handling. It also includes deep dives on
-[Android], [bare-metal], and [concurrency].
+[Android], [Chromium], [bare-metal], and [concurrency].
 
 [Android]: https://google.github.io/comprehensive-rust/android.html
+[Chromium]: https://google.github.io/comprehensive-rust/chromium.html
 [bare-metal]: https://google.github.io/comprehensive-rust/bare-metal.html
 [concurrency]: https://google.github.io/comprehensive-rust/concurrency.html
 
@@ -48,9 +49,13 @@ The course is built using a few tools:
 
 - [mdbook](https://github.com/rust-lang/mdBook)
 - [mdbook-svgbob](https://github.com/boozook/mdbook-svgbob)
-- [mdbook-i18n-helpers](https://github.com/google/mdbook-i18n-helpers)
+- [mdbook-i18n-helpers and i18n-report](https://github.com/google/mdbook-i18n-helpers)
 - [mdbook-exerciser](mdbook-exerciser/)
 - [mdbook-course](mdbook-course/)
+
+In addition,
+[mdbook-linkcheck](https://github.com/Michael-F-Bryan/mdbook-linkcheck) checks
+the internal links.
 
 First install Rust by following the instructions on https://rustup.rs/. Then
 clone this repository:
@@ -64,10 +69,12 @@ Then install these tools with:
 
 ```shell
 cargo install mdbook
-cargo install mdbook-svgbob
-cargo install mdbook-i18n-helpers
-cargo install --path mdbook-exerciser
-cargo install --path mdbook-course
+cargo install --locked mdbook-svgbob
+cargo install --locked mdbook-i18n-helpers
+cargo install --locked i18n-report
+cargo install --locked mdbook-linkcheck
+cargo install --locked --path mdbook-exerciser
+cargo install --locked --path mdbook-course
 ```
 
 Run
